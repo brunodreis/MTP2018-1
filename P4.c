@@ -1,6 +1,6 @@
-// P4
-// Bruno Damasceno Reis
-// 11721EAU008
+// Bruno Damasceno Reis (11721EAU008)
+// Avaliação Continuada P4
+// # MTP2018-1
 
 #include <stdio.h>
 
