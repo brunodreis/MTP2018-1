@@ -1,5 +1,5 @@
 //Bruno Damasceno Reis (11721EAU008)
-//Avaliação continuada P1
+//Avaliação continuada P6
 //# MTP2018-1
 
 #include <stdio.h>
