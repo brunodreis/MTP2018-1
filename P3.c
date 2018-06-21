@@ -2,113 +2,128 @@
 // Avaliação Continuada P3
 // # MTP2018-1
 
-#include <stdio.h>
-
-int main ()
+#include<stdio.h>
+void printbits(unsigned int num, int len) 
 {
-	int m, i, e, m1;
-	char bin[256], bin1[256], bin2 [256];
-	printf ("OPERACOES BINARIAS (BITWISE)\n\n"
-	"Escolha a operacao a ser utilizada:\n\n"
-	"1. NOT\n"
-	"2. AND\n"
-	"3. OR\n"
-	"4. XOR\n"
-	"5. Right Shift\n"
-	"6. Left Shift\n\n");
-	scanf ("%d", &e);
-	
-	if (e == 1) // NOT
+	if(len != 0) 
 	{
-		printf ("\nDigite um numero:");
-		scanf ("%d", &m);
-		getchar();
-		itoa (m, bin, 2);
-		printf ("\nNOT %d (%s)\n", m, bin);
-		i = ~m;
-		itoa (i, bin2, 2);
-		printf ("\n:%d (%s)\n", i, bin2);
-	
-
-	}
-	
-	else if (e == 2) // AND
-	{
-		printf ("\nDigite um numero:");
-		scanf ("%d", &m);
-		getchar();
-		itoa (m, bin, 2);
-		printf ("\nDigite outro numero:");
-		scanf ("%d", &m1);
-		getchar();
-		itoa (m1, bin1, 2);
-		printf ("\n%d (%s)\n", m, bin);
-		printf ("\nAND %d (%s)\n", m1, bin1);
-		i = m&m1;
-		itoa (i, bin2, 2);
-		printf ("\n:%d (%s)\n", i, bin2);
-	}
-	
-	else if (e == 3) // OR
-	{
-		printf ("\nDigite um numero:");
-		scanf ("%d", &m);
-		getchar();
-		itoa (m, bin, 2);
-		printf ("\nDigite outro numero:");
-		scanf ("%d", &m1);
-		getchar();
-		itoa (m1, bin1, 2);
-		printf ("\n%d (%s)\n", m, bin);
-		printf ("\nOR %d (%s)\n", m1, bin1);
-		i = m|m1;
-		itoa (i, bin2, 2);
-		printf ("\n:%d (%s)\n", i, bin2);
-	}
-	
-	else if (e == 4) // XOR
-	{
-		printf ("\nDigite um numero:");
-		scanf ("%d", &m);
-		getchar();
-		itoa (m, bin, 2);
-		printf ("\nDigite outro numero:");
-		scanf ("%d", &m1);
-		getchar();
-		itoa (m1, bin1, 2);
-		printf ("\n%d (%s)\n", m, bin);
-		printf ("\nXOR %d (%s)\n", m1, bin1);
-		i = m^m1;
-		itoa (i, bin2, 2);
-		printf ("\n:%d (%s)\n", i, bin2);	
-	}
-	
-	else if (e == 5) // Right Shift
-	{
-		int n, dado;
-		printf("RIGHT SHIFT\n");
-		dado = 0x8000;
-		n = 5;
-		printf("%04X | >> %d bits | %04X\n", dado, n, dado>>n );
-		printf("%04d | >> %d bits | %04d\n", dado, n, dado>>n );
-
-	}
-	
-	else if (e == 6) // Left Shift
-	{
-		int n, dado;
-		printf("LEFT SHIFT\n");
-		dado = 0x0001;
-		n = 5;
-		printf("%04X | << %d bits | %04X\n", dado, n, dado<<n );
-		printf("%04d | << %d bits | %04d\n", dado, n, dado<<n );
-
-	}
-
-	else 
-	{
-		printf ("Opcao invalida.");
-	}
-	
-	return 0;
+	printbits(num/2, len-1);
+	printf("%d", (num%2));
+	}	
 }
+
+
+
+ int main()
+ {
+ 	int  operacao,i, num,d=1,dec=0,nb ,aux=0,num2,x,y, resultado;
+ 	char bin[256],argumento2[256];
+ 	printf("Escolha entre as seguintes opções de Calculo em Bitwise: \n1- NOT"
+	 "\n2-AND \n3-OR  \n4-XOR"
+	 "\n5-Right Shift  \n6-Left Shift  \n");
+    scanf("%d",&operacao);getchar();
+	switch(operacao)
+	{
+		case 1:
+			printf("\n\nDigite um numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\nNOT %d  (", x);
+			printbits(x, 32);
+			printf(")");
+			resultado=~x;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+			
+			break;
+		case 2:
+		    printf("\n\nDigite o primeiro numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\n\nDigite o segundo numero: ");
+			scanf("%d", &y); getchar();
+			printf("\n\n%d (", x);
+			printbits(x, 32);
+			printf(")");
+			printf(" AND %d (", y);
+			printbits(y, 32);
+			printf(")");
+			resultado=x&y;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+			break;
+		case 3:
+			printf("\n\nDigite o primeiro numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\n\nDigite o segundo numero: ");
+			scanf("%d", &y); getchar();
+			printf("\n\n%d (", x);
+			printbits(x, 32);
+			printf(")");
+			printf(" OR %d (", y);
+			printbits(y, 32);
+			printf(")");
+			resultado=x|y;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+			
+			break;
+		case 4:
+			printf("\n\nDigite o primeiro numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\n\nDigite o segundo numero: ");
+			scanf("%d", &y); getchar();
+			printf("\n\n%d (", x);
+			printbits(x, 32);
+			printf(")");
+			printf(" AND %d (", y);
+			printbits(y, 32);
+			printf(")");
+			resultado=x^y;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+			
+			break;
+		case 5:
+			printf("\n\nDigite o primeiro numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\n\nDigite o segundo numero: ");
+			scanf("%d", &y); getchar();
+			printf("\n\n%d (", x);
+			printbits(x, 32);
+			printf(")");
+			printf(" >> %d (", y);
+			printbits(y, 32);
+			printf(")");
+			resultado=x>>y;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+		    
+			break;
+		case 6:
+			printf("\n\nDigite o primeiro numero: ");
+			scanf("%d", &x);	getchar();
+			printf("\n\nDigite o segundo numero: ");
+			scanf("%d", &y); getchar();
+			printf("\n\n%d (", x);
+			printbits(x, 32);
+			printf(")");
+			printf(" << %d (", y);
+			printbits(y, 32);
+			printf(")");
+			resultado=x<<y;
+			printf(" : %d (", resultado);
+			printbits(resultado, 32);
+			printf(")");
+				
+		    break;
+
+		default:
+            printf("Opcao Invalida\n");
+            break;
+	 }
+	 return 0;	 
+ }
