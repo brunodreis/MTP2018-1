@@ -4,24 +4,23 @@
 
 #include <stdio.h>
 
-int main() 
+int main ()
 {
-	int ac = 0, i;
-	char num[256];
+char bits[256];
+int cum=0, i;
 
-	printf ("Digite um numero: ");
-	scanf ("%s", &num);
-	getchar ();
-	
-	for (i=0; num[i] != '\0'; i++)
+printf ("Digite um numero: ");
+scanf ("%s", bits);
+getchar();
+for (i=0; bits[i] != '\0'; i++)
 	{
-		if (num[i] >=48 && num[i] <= 57)
-		{
-			num[i] = num[i] - '0';
-			ac = ac*10 + num[i];
-		}
+	if(bits[i] >=48 && bits[i]<=57)
+	{
+		bits[i]=bits[i]-'0';
+		cum= cum*10 + bits[i];
 	}
-	
-	printf ("\nO numero digitado: %d", ac);
-	return 0;
+
+}
+printf ("O numero digitado: %d", cum);
+return 0;
 }
