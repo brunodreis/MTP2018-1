@@ -3,53 +3,51 @@
 // 11721EAU008
 
 #include <stdio.h>
-#include <locale.h>
-
 
 int main()
-{
-	int j , i, codif[64], *numeros;
-	char msg[256], *mensagem;
-	
-	setlocale(LC_ALL, "Portuguese");
-	for(i = 0; i < 256; i++) msg[i] = '\0';
-	printf("\t1. Codificar\n\t2. Decodificar\n\n\t");
-	scanf("%d",&j);
-	getchar();
-	
-	switch(j)
-	{
-		
-		case 1:{
-			printf("\n\tEntre com uma frase de até 255 caracteres: \n\t"); 
-			scanf("%s", msg);
-			char *mensagem= msg;
-			printf("\n\tFrase codificada:\n\t");
-			
-			for(i = 0; msg[i] ;i++)
-			{
-				numeros = (int*)mensagem;
-				if(numeros[i]!= 0) printf("%d",numeros[i]);
-				if(numeros[i+1]!= 0) printf(", ");}
+{	char str[256];
+	char *p;
+	int i, cont, txt[256], opcao;
+	int *ps;
+	do{
+	do{printf("MENU: \n1 - Criptografar \n2 - Descriptografar \n3 - Sair do programa \nSua opcao eh: ");
+	scanf("%d", &opcao);
+	getchar();}while(opcao!=1 && opcao!=2 && opcao!=3);
+	i = 0;
+	switch(opcao)
+	{	case 1:
+			for(i=0; i<256; i++){ str[i] = '\0'; }
+			printf("Digite uma informacao textual: ");
+			fgets(str, 256, stdin);
+			for(cont=0; str[cont] != '\0'; cont++);	
+			ps = (int*)str;
+			printf("\nFrase criptografada: \n");
+			for(i=0; i<cont; i++)	
+			{	if(*(ps+i) != 0 )
+				{	printf("%i ", *(ps+i));	}	} 
 			break;
-		}
-		
+			
 		case 2:
-		{
-			printf("\t\nDigite os numeros (max.: 64), sendo o ultimo entre 1 e 4095.\n   \t\tObs:Digite 0 p/ finalizar a entrada\n\n");
-			
-			for(i = 0; i < 64; i++)
-			 {
-				printf("n%d:\t ", i+1); 
-				scanf("%d", &codif[i]);
-				mensagem = (char*)codif;
-				if(codif[i]==0) 
-				break;
-			 }
-			 
-			 printf("\n\n\tFrase decodificada: %s", mensagem);
-	    }
-			
+			printf("Quando quiser encerrar a sequencia de numeros, entre com 0\n");
+			p = (char*)txt;
+			i=0; cont=0;
+			printf("Digite uma sequencia de numeros: \n");
+			do
+			{	scanf("%d", &cont);
+	 			getchar();
+				txt[i] = cont;
+				i++;
+			}while(cont != 0);
+			p = (char*)&txt;
+			printf("\nFrase descriptografada: \n");
+			for(i=0; i<sizeof(txt) && *(p+i) != 0; i++)
+			{	printf("%c", *(p+i));		}
+			break;
+
+		default:
+			break;
 	}
+	printf("\n\n");
+	}while(opcao != 3);
 	return 0;
 }
